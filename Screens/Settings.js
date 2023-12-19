@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Switch } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import NavBar from './NavBar'
 
 const SettingsScreen = ({ navigation }) => {
   // Placeholder for actual navigation or action calls
@@ -50,7 +51,7 @@ const SettingsScreen = ({ navigation }) => {
         <Text style={styles.optionText}>Contact Us</Text>
         <Ionicons name="chevron-forward-outline" size={20} color="#000" />
       </TouchableOpacity>
-      <View style={styles.navBar}>
+      {/* <View style={styles.navBar}>
         <TouchableOpacity onPress={navigateToOverview}>
           <Ionicons name="home-outline" size={24} color="#000" />
         </TouchableOpacity>
@@ -63,7 +64,9 @@ const SettingsScreen = ({ navigation }) => {
         <TouchableOpacity onPress={navigateToProfile}>
           <Ionicons name="person-outline" size={24} color="#000" /> 
         </TouchableOpacity>
-      </View>
+      </View> */}
+
+      <NavBar/>
     </View>
   );
 };

@@ -1,23 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { MenuProvider, Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
+import { MenuProvider } from 'react-native-popup-menu';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
 const DashBoard = () => {
   const navigation = useNavigation(); // Hook to access the navigation prop
-
-  const navigateToOverview = () => {
-    navigation.navigate('DashBoard');
-  };
-  // Updated function to navigate to Prediction screen
-  const navigateToPrediction = () => {
-    navigation.navigate('Prediction'); // Ensure 'Prediction' matches the route name defined in your navigator
-  };
-  const navigateToRoomWise = () => console.log('Navigate to Room Wise');
-  const navigateToProfile = () => {
-    navigation.navigate('EditProfile');
-  };
 
   const today = new Date();
 
@@ -31,36 +19,10 @@ const DashBoard = () => {
   const dateString = `${getOrdinalNum(day)} ${monthName}`;
 
   return (
-    <MenuProvider style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={styles.menuButtonContainer}>
-          <Menu>
-            <MenuTrigger>
-              <Ionicons name="menu" size={30} color="black" />
-            </MenuTrigger>
-            <MenuOptions style={styles.menuOptionsStyle}>
-              <MenuOption onSelect={() => {
-                navigation.navigate('EditProfile');
-              }}>
-                <Text style={styles.menuOptionText}>Profile</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('Settings'); 
-              }}>
-                <Text style={styles.menuOptionText}>Settings</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('HelpCenter');
-              }}>
-                <Text style={styles.menuOptionText}>Help center</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('SignIn');
-              }}>
-                <Text style={styles.menuOptionText}>Sign out</Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
+          <Menu1/>
         </View>
       </View>
       <View style={styles.BillEcontainer}>
@@ -79,7 +41,7 @@ const DashBoard = () => {
         <View style={styles.c4circleContainer}>
           <View style={styles.c4innerCircleContainer}>
             <View style={styles.c4innermostCircleContainer}>
-              <Image source={require('../extra/assets/OV.png')}/>
+              <Image source={require('../extra/assets/OV.png')} />
             </View>
           </View>
         </View>
@@ -95,7 +57,7 @@ const DashBoard = () => {
       </View>
 
       <View style={styles.VMbuttonContainer}>
-        <TouchableOpacity style={styles.VMbutton} onPress={navigateToPrediction}>
+        <TouchableOpacity style={styles.VMbutton}>
           <Text style={styles.VMbuttonText}>View more</Text>
           <View style={styles.VMarrowContainer}>
             <View style={styles.VMarrowLine}></View>
@@ -108,7 +70,7 @@ const DashBoard = () => {
         <Text style={styles.c11amountText}>Rs. 10,523.21</Text>
         <Text style={styles.c11usagePatternText}>Based on ongoing usage pattern</Text>
         <View style={styles.c11iconContainer}>
-          <Image source={require('../extra/assets/c11.png')}/>
+          <Image source={require('../extra/assets/c11.png')} />
         </View>
       </View>
 
@@ -120,7 +82,7 @@ const DashBoard = () => {
         </View>
         <View style={styles.c13iconContainer}>
           <View style={styles.c13iconInnerContainer}>
-            <Image source={require('../extra/assets/c13.png')}/>
+            <Image source={require('../extra/assets/c13.png')} />
           </View>
         </View>
         <Text style={styles.c13updateRequiredText}>Data Update Required!</Text>
@@ -131,7 +93,7 @@ const DashBoard = () => {
         <Text style={styles.c14time}>6:30 - 11:30 pm</Text>
         <Text style={styles.c14updated}>updated a week ago</Text>
         <View style={styles.c14iconContainer}>
-          <Image source={require('../extra/assets/c14.png')}/>
+          <Image source={require('../extra/assets/c14.png')} />
         </View>
       </View>
 
@@ -140,25 +102,10 @@ const DashBoard = () => {
         <Text style={styles.c12priceText}>Rs. 23.91</Text>
         <Text style={styles.c12updatedText}>updated 1 day ago</Text>
         <View style={styles.c12iconContainer}>
-          <Image source={require('../extra/assets/c12.png')}/>
+          <Image source={require('../extra/assets/c12.png')} />
         </View>
       </View>
-
-      <View style={styles.navBar}>
-        <TouchableOpacity onPress={navigateToOverview}>
-          <Ionicons name="home-outline" size={24} color="#000" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={navigateToPrediction}>
-          <Ionicons name="stats-chart-outline" size={24} color="#000" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={navigateToRoomWise}>
-          <Ionicons name="grid-outline" size={24} color="#000" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={navigateToProfile}>
-          <Ionicons name="person-outline" size={24} color="#000" /> 
-        </TouchableOpacity>
-      </View>
-    </MenuProvider>
+    </View>
   );
 };
 
@@ -169,37 +116,18 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: 'white',
     flex: 1,
-    // boxShadow: '0px 2px 5px rgba(23, 26, 31, 0.17)',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-  },
-  navBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderTopWidth: 1,
-    borderTopColor: '#EFEFEF',
-    paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
   headerContainer: {
     position: 'absolute',
     right: 10,
     top: 10,
-    zIndex: 10, // Ensure the menu is above other elements
+    zIndex: 1,
   },
   menuButtonContainer: {
-    padding: 30, // Increase touchable area
-  },
-  menuOptionsStyle: {
-    marginTop: 40, // Adjust the position of the menu dropdown
-  },
-  menuOptionText: {
-    padding: 10,
-    fontSize: 16,
+    padding: 30,
+    zIndex: 20,
   },
   BillEcontainer: {
     left: 60,

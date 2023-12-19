@@ -22,6 +22,8 @@ import ContactUs from './Screens/ContactUs';
 import Privacy from './Screens/Privacy';
 import RoomwisePrediction from './Screens/RoomwisePrediction';
 
+import MenuComponent from './Screens/MenuComp';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {

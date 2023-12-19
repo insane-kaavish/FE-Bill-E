@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { MenuProvider, Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import MenuComponent from './MenuComp';
 
 const DashBoard = () => {
   const navigation = useNavigation(); // Hook to access the navigation prop
@@ -33,38 +34,11 @@ const DashBoard = () => {
   const dateString = `${getOrdinalNum(day)} ${monthName}`;
 
   return (
-    <MenuProvider style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.menuButtonContainer}>
-          <Menu>
-            <MenuTrigger>
-              <Ionicons name="menu" size={30} color="black" />
-            </MenuTrigger>
-            <MenuOptions style={styles.menuOptionsStyle}>
-              <MenuOption onSelect={() => {
-                navigation.navigate('EditProfile');
-              }}>
-                <Text style={styles.menuOptionText}>Profile</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('Settings'); 
-              }}>
-                <Text style={styles.menuOptionText}>Settings</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('HelpCenter');
-              }}>
-                <Text style={styles.menuOptionText}>Help center</Text>
-              </MenuOption>
-              <MenuOption onSelect={() => {
-                navigation.navigate('SignIn');
-              }}>
-                <Text style={styles.menuOptionText}>Sign out</Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
-        </View>
-      </View>
+    <>
+    <MenuComponent/>
+    <View style={styles.container}>
+      
+      
       <View style={styles.BillEcontainer}>
         <Text style={styles.BillEtext}>Bill-E</Text>
       </View>
@@ -160,7 +134,8 @@ const DashBoard = () => {
           <Ionicons name="person-outline" size={24} color="#000" /> 
         </TouchableOpacity>
       </View>
-    </MenuProvider>
+    </View>
+    </>
   );
 };
 
